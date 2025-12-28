@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POWER | L'écosystème IA pour E-commerçants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. CORE VARIABLES & THEME --- */
+        :root {
+            --bg-deep: #050507;
+            --primary: #4f46e5; /* Indigo */
+            --primary-glow: rgba(79, 70, 229, 0.5);
+            --accent: #a855f7; /* Purple */
+            --accent-glow: rgba(168, 85, 247, 0.5);
+            --text-white: #ffffff;
+            --text-grey: #9ca3af;
+            
+            /* GLASS RECIPE (Apple Style) */
+            --glass-bg: rgba(20, 20, 25, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shine: rgba(255, 255, 255, 0.1);
+            --glass-blur: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 2. BACKGROUND FX --- */
+        .ambient-light {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.15), transparent 40%),
+                radial-gradient(circle at 85% 60%, rgba(168, 85, 247, 0.12), transparent 40%);
+        }
+
+        /* --- 3. UTILITIES & TYPOGRAPHY --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section-spacer { padding: 100px 0; }
+        
+        h1, h2, h3 { letter-spacing: -0.02em; color: white; }
+        p { color: var(--text-grey); }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight-text {
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- 4. NAVIGATION (Pill Style) --- */
+        nav {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 800px; z-index: 1000;
+            background: rgba(10, 10, 15, 0.6);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            padding: 10px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+        .logo-dot { width: 10px; height: 10px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+
+        .nav-links { display: flex; gap: 24px; font-size: 0.9rem; font-weight: 500; }
+        .nav-links a { text-decoration: none; color: var(--text-grey); transition: 0.3s; }
+        .nav-links a:hover { color: white; }
+        @media(max-width: 768px) { .nav-links { display: none; } }
+
+        .nav-btn {
+            background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; 
+            text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.3s;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+        }
+        .nav-btn:hover { transform: scale(1.05); background: #4338ca; }
+
+        /* --- 5. HERO SECTION --- */
+        .hero-wrapper {
+            padding-top: 160px; padding-bottom: 80px; min-height: 100vh;
+            display: flex; align-items: center;
+        }
+
+        .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+
+        /* Scarcity Bar */
+        .scarcity-bar {
+            background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.2);
+            color: #f87171; padding: 6px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 24px; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .timer { color: white; font-family: monospace; font-size: 0.9rem; letter-spacing: 1px; }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 24px;
+        }
+        .hero-desc { font-size: 1.1rem; margin-bottom: 32px; max-width: 90%; }
+
+        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+        .btn-lg {
+            padding: 16px 32px; border-radius: 50px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent)); color: white;
+            box-shadow: 0 0 30px var(--primary-glow); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--primary-glow); }
+        .btn-glass { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: white; }
+        .btn-glass:hover { background: rgba(255,255,255,0.1); }
+
+        .badges-row { display: flex; gap: 12px; flex-wrap: wrap; }
+        .badge {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 6px 14px;
+            border-radius: 20px; font-size: 0.75rem; color: var(--text-grey); display: flex; align-items: center; gap: 6px;
+        }
+        .badge-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+
+        /* Pricing Card Hero */
+        .pricing-hero-card {
+            background: var(--glass-bg); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border); border-radius: 24px; padding: 32px;
+            position: relative; box-shadow: 0 20px 80px rgba(0,0,0,0.6); overflow: hidden;
+        }
+        .pricing-hero-card::before { /* Top shine */
+            content:''; position: absolute; top:0; left:0; right:0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+        .price-tag { font-size: 3rem; font-weight: 900; line-height: 1; margin: 10px 0 5px; }
+        .price-meta { color: var(--text-grey); font-size: 0.85rem; margin-bottom: 24px; display: block;}
+        
+        .checklist { list-style: none; margin-bottom: 30px; }
+        .checklist li { display: flex; align-items: start; gap: 12px; margin-bottom: 14px; color: #e2e8f0; font-size: 0.9rem; }
+        .check-icon {
+            background: rgba(79, 70, 229, 0.2); color: #818cf8; border-radius: 50%; width: 20px; height: 20px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; margin-top: 3px;
+        }
+
+        /* --- 6. FEATURES (ZIG ZAG) --- */
+        .glass-panel {
+            background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 40px; overflow: hidden; position: relative;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+        .glass-panel:hover { border-color: rgba(255,255,255,0.2); }
+
+        .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 40px; }
+        .split-visual {
+            height: 350px; display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent);
+            border-radius: 16px; border: 1px solid var(--glass-border); position: relative;
+        }
+        .visual-emoji { font-size: 5rem; animation: float 6s infinite ease-in-out; }
+
+        .tag-pill {
+            display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px;
+        }
+        .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .tag-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+        /* --- 7. BENTO GRID --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 60px; }
+        .bento-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 240px; }
+        .bento-icon { font-size: 2rem; margin-bottom: 15px; }
+
+        /* --- 8. FAQ --- */
+        .faq-item { border-bottom: 1px solid var(--glass-border); padding: 20px 0; }
+        .faq-item summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item p { margin-top: 10px; font-size: 0.95rem; line-height: 1.6; opacity: 0.8; }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid var(--glass-border); padding: 60px 0; margin-top: 100px; text-align: center; font-size: 0.9rem; color: var(--text-grey); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero-grid, .split-section { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { text-align: center; }
+            .cta-group, .badges-row { justify-content: center; }
+            .split-visual { height: 250px; }
+            .split-visual.order-mob { order: -1; } /* Image on top on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-light"></div>
+
+    <nav>
+        <div class="logo">
+            <div class="logo-dot"></div>
+            POWER
+        </div>
+        <div class="nav-links">
+            <a href="#features">Fonctionnalités</a>
+            <a href="#plan">Business Plan</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <a href="#buy" class="nav-btn">Accès 29,99€</a>
+    </nav>
+
+    <section class="hero-wrapper">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <div class="hero-content reveal active">
+                    <div class="scarcity-bar">
+                        <span>🔥 Offre limitée — Fermeture dans 48h</span>
+                        <span class="timer" id="countdown">00:09:09</span>
+                    </div>
+
+                    <h1>Accède à un réseau <span class="highlight-text">mondial</span> de fournisseurs + des packs pour lancer ton business.</h1>
+                    
+                    <p class="hero-desc">
+                        POWER t'ouvre les portes d'une nouvelle vie : <strong>plus de 100 000 fournisseurs</strong> (Chine, Europe, USA), 30+ pays, et une diversité énorme. Arrêtez de chercher, commencez à vendre.
+                    </p>
+
+                    <div class="cta-group">
+                        <a href="#buy" class="btn-lg btn-primary">Obtenir l'accès — 29,99€</a>
+                        <a href="#features" class="btn-lg btn-glass">Voir le contenu</a>
+                    </div>
+
+                    <div class="badges-row">
+                        <div class="badge"><div class="badge-dot"></div> Accès immédiat</div>
+                        <div class="badge"><div class="badge-dot"></div> Paiement unique</div>
+                        <div class="badge"><div class="badge-dot"></div> Mises à jour incluses</div>
+                    </div>
+                </div>
+
+                <div class="pricing-hero-card reveal active" id="buy" style="transition-delay: 0.2s;">
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Accès POWER</h3>
+                        <p style="color:var(--text-grey); font-size:0.9rem;">Pack complet Fournisseurs & IA</p>
+                    </div>
+
+                    <div class="price-tag">29,99€</div>
+                    <span class="price-meta">Paiement unique (Accès à vie)</span>
+
+                    <ul class="checklist">
+                        <li><span class="check-icon">✓</span> <span>PACK +100,000 fournisseurs vérifiés</span></li>
+                        <li><span class="check-icon">✓</span> <span>Carte Interactive IA (Monde)</span></li>
+                        <li><span class="check-icon">✓</span> <span>Générateur Business Plan IA</span></li>
+                        <li><span class="check-icon">✓</span> <span>Packs Bonus (Influence & Branding)</span></li>
+                    </ul>
+
+                    <a href="#" class="btn-lg btn-primary" style="justify-content: center; width: 100%;">
+                        Acheter maintenant
+                    </a>
+                    <p style="text-align: center; font-size: 0.75rem; color: var(--text-grey); margin-top: 15px;">
+                        🔒 Paiement sécurisé SSL via Stripe
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="container" style="text-align: center; margin-bottom: 100px; opacity: 0.6;">
+        <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Utilisé par les e-commerçants de demain</p>
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-weight: 700; font-size: 1.5rem; color: #52525b;">
+            <span>SHOPIFY</span><span>STRIPE</span><span>AMAZON FBA</span><span>WOO</span>
+        </div>
+    </div>
+
+    <section id="features" class="section-spacer">
+        <div class="container">
+            
+            <div class="split-section reveal">
+                <div class="split-visual glass-panel order-mob">
+                    <span class="visual-emoji">🌍</span>
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem;">Analysé par l'IA</div>
+                </div>
+                <div>
+                    <span class="tag-pill tag-blue">Sourcing Mondial</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Carte Fournisseurs IA</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                        Ne perdez plus des semaines sur Alibaba. Notre carte interactive boostée à l'IA vous montre instantanément les usines fiables.
+                    </p>
+                    <ul class="checklist">
+                        <li><span class="check-icon">✓</span> Filtrage par niche (Beauté, Tech, Maison...)</li>
+                        <li><span class="check-icon">✓</span> Données douanières réelles (savoir qui exporte quoi)</li>
+                        <li><span class="check-icon">✓</span> Coordonnées directes (Email, WhatsApp, WeChat)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="split-section reveal" id="plan">
+                <div>
+                    <span class="tag-pill tag-purple">Intelligence Artificielle</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Générateur de Business Plan</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                        Besoin de lever des fonds ou de structurer vos idées ? L'IA rédige pour vous un dossier professionnel de 20 pages en 2 minutes.
+                    </p>
+                    <ul class="checklist">
+                        <li><span class="check-icon">✓</span> Analyse SWOT & Étude de marché</li>
+                        <li><span class="check-icon">✓</span> Prévisionnel financier automatique</li>
+                        <li><span class="check-icon">✓</span> Stratégie Marketing & Acquisition</li>
+                    </ul>
+                </div>
+                <div class="split-visual glass-panel">
+                    <span class="visual-emoji">💼</span>
+                </div>
+            </div>
+
+            <div class="bento-grid">
+                <div class="glass-panel bento-card reveal">
+                    <div>
+                        <div class="bento-icon">📚</div>
+                        <h3>Bibliothèque Ebooks</h3>
+                        <p style="margin-top: 10px;">50+ guides stratégiques inclus. Fiscalité, Branding, Publicité Facebook & TikTok Ads.</p>
+                    </div>
+                </div>
+                <div class="glass-panel bento-card reveal" style="transition-delay: 0.1s;">
+                    <div>
+                        <div class="bento-icon">🚀</div>
+                        <h3>Produits Trends</h3>
+                        <p style="margin-top: 10px;">Algorithme de détection de viralité. Repérez les produits gagnants avant la concurrence.</p>
+                    </div>
+                </div>
+                <div class="glass-panel bento-card reveal" style="transition-delay: 0.2s;">
+                    <div>
+                        <div class="bento-icon">🤝</div>
+                        <h3>Support Prioritaire</h3>
+                        <p style="margin-top: 10px;">Accès à notre communauté privée et support technique 7j/7 pour vous aider.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="section-spacer" style="padding-top: 0;">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="text-align: center; margin-bottom: 40px;">Questions Fréquentes</h2>
+            <div class="glass-panel reveal">
+                <details class="faq-item">
+                    <summary>Est-ce vraiment un paiement unique ?</summary>
+                    <p>Oui. Contrairement aux autres outils SaaS à abonnement mensuel, POWER est accessible via un achat unique de 29,99€. Vous aurez accès à vie, mises à jour comprises.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Comment fonctionne l'IA Business Plan ?</summary>
+                    <p>C'est très simple. Vous entrez quelques mots clés sur votre idée (ex: "Marque de vêtements de sport éco-responsable"), et notre IA génère tout le document structuré prêt à être présenté.</p>
+                </details>
+                <details class="faq-item" style="border: none;">
+                    <summary>Les fournisseurs sont-ils vérifiés ?</summary>
+                    <p>Nous agrégeons des données de multiples sources (douanes, avis plateformes, certifications) pour ne vous présenter que des fournisseurs ayant un historique d'exportation fiable.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-spacer" style="text-align: center;">
+        <div class="container reveal">
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">Prêt à passer au niveau supérieur ?</h2>
+            <p style="margin-bottom: 40px;">Rejoignez les entrepreneurs qui utilisent la Data pour réussir.</p>
+            <a href="#buy" class="btn-lg btn-primary" style="display: inline-flex;">Débloquer mon accès POWER</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div style="font-weight: 900; font-size: 1.5rem; color: white; margin-bottom: 20px;">POWER</div>
+            <p>&copy; 2024 POWER Technologies. Tous droits réservés.</p>
+            <div style="margin-top: 20px; font-size: 0.8rem;">
+                <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">CGV</a>
+                <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">Mentions Légales</a>
+                <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Timer Compte à rebours
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        // 2. Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        
+        // Init
+        window.onload = function () {
+            let fortyEightHours = 48 * 60 * 60;
+            let display = document.querySelector('#countdown');
+            startTimer(fortyEightHours, display);
+            reveal(); // Check on load
+        };
+    </script>
+</body>
+</html>
