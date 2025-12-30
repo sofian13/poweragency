@@ -4,22 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POWER | L'écosystème IA pour E-commerçants</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         /* --- 1. CORE VARIABLES & THEME --- */
         :root {
+            /* THÈME COULEUR CLIENT */
+            --primary: #4564FF; 
+            --primary-glow: rgba(69, 100, 255, 0.5);
+            --primary-dim: rgba(69, 100, 255, 0.1);
+            
+            /* Secondary stays purple to create the gradient mix, adjusted slightly */
+            --accent: #9d4eff; 
+            
             --bg-deep: #050507;
-            --primary: #4f46e5; /* Indigo */
-            --primary-glow: rgba(79, 70, 229, 0.5);
-            --accent: #a855f7; /* Purple */
-            --accent-glow: rgba(168, 85, 247, 0.5);
             --text-white: #ffffff;
             --text-grey: #9ca3af;
             
-            /* GLASS RECIPE (Apple Style) */
+            /* TYPOGRAPHY */
+            --font-main: 'Manrope', sans-serif;
+            
+            /* GLASS RECIPE (Apple/Futuristic Style) */
             --glass-bg: rgba(20, 20, 25, 0.6);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-shine: rgba(255, 255, 255, 0.1);
@@ -31,7 +39,7 @@
         body {
             background-color: var(--bg-deep);
             color: var(--text-white);
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-main);
             overflow-x: hidden;
             line-height: 1.6;
         }
@@ -40,25 +48,20 @@
         .ambient-light {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
             background: 
-                radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.15), transparent 40%),
-                radial-gradient(circle at 85% 60%, rgba(168, 85, 247, 0.12), transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(69, 100, 255, 0.18), transparent 40%),
+                radial-gradient(circle at 90% 60%, rgba(157, 78, 255, 0.15), transparent 40%);
         }
 
         /* --- 3. UTILITIES & TYPOGRAPHY --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         .section-spacer { padding: 100px 0; }
         
-        h1, h2, h3 { letter-spacing: -0.02em; color: white; }
-        p { color: var(--text-grey); }
+        h1, h2, h3 { letter-spacing: -0.02em; color: white; font-weight: 800; }
+        p { color: var(--text-grey); font-weight: 400; }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        /* Highlight Text Gradient */
         .highlight-text {
-            background: linear-gradient(90deg, #818cf8, #c084fc);
+            background: linear-gradient(90deg, #6b82ff, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -67,7 +70,7 @@
         nav {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
             width: 90%; max-width: 800px; z-index: 1000;
-            background: rgba(10, 10, 15, 0.6);
+            background: rgba(10, 10, 15, 0.65);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 100px;
@@ -76,20 +79,20 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
-        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .logo-dot { width: 10px; height: 10px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
+        .logo-dot { width: 10px; height: 10px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 12px var(--primary); }
 
-        .nav-links { display: flex; gap: 24px; font-size: 0.9rem; font-weight: 500; }
+        .nav-links { display: flex; gap: 24px; font-size: 0.95rem; font-weight: 600; }
         .nav-links a { text-decoration: none; color: var(--text-grey); transition: 0.3s; }
         .nav-links a:hover { color: white; }
         @media(max-width: 768px) { .nav-links { display: none; } }
 
         .nav-btn {
-            background: var(--primary); color: white; padding: 8px 20px; border-radius: 50px; 
-            text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: 0.3s;
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+            background: var(--primary); color: white; padding: 10px 22px; border-radius: 50px; 
+            text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(69, 100, 255, 0.3);
         }
-        .nav-btn:hover { transform: scale(1.05); background: #4338ca; }
+        .nav-btn:hover { transform: scale(1.05); background: #3350db; }
 
         /* --- 5. HERO SECTION --- */
         .hero-wrapper {
@@ -102,22 +105,22 @@
         /* Scarcity Bar */
         .scarcity-bar {
             background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.2);
-            color: #f87171; padding: 6px 16px; border-radius: 12px; font-size: 0.8rem; font-weight: 600;
+            color: #f87171; padding: 6px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 700;
             margin-bottom: 24px; display: inline-flex; align-items: center; gap: 10px;
         }
         .timer { color: white; font-family: monospace; font-size: 0.9rem; letter-spacing: 1px; }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; font-weight: 800; margin-bottom: 24px;
+            font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1.1; margin-bottom: 24px;
         }
-        .hero-desc { font-size: 1.1rem; margin-bottom: 32px; max-width: 90%; }
+        .hero-desc { font-size: 1.15rem; margin-bottom: 32px; max-width: 90%; line-height: 1.7; }
 
         .cta-group { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
         .btn-lg {
-            padding: 16px 32px; border-radius: 50px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s;
+            padding: 16px 32px; border-radius: 50px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; font-size: 1rem;
         }
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--accent)); color: white;
+            background: var(--primary); color: white;
             box-shadow: 0 0 30px var(--primary-glow); border: 1px solid rgba(255,255,255,0.1);
         }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--primary-glow); }
@@ -126,29 +129,29 @@
 
         .badges-row { display: flex; gap: 12px; flex-wrap: wrap; }
         .badge {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 6px 14px;
-            border-radius: 20px; font-size: 0.75rem; color: var(--text-grey); display: flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 8px 16px;
+            border-radius: 20px; font-size: 0.8rem; color: var(--text-grey); display: flex; align-items: center; gap: 8px; font-weight: 600;
         }
         .badge-dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
 
         /* Pricing Card Hero */
         .pricing-hero-card {
             background: var(--glass-bg); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border); border-radius: 24px; padding: 32px;
+            border: 1px solid var(--glass-border); border-radius: 24px; padding: 36px;
             position: relative; box-shadow: 0 20px 80px rgba(0,0,0,0.6); overflow: hidden;
         }
         .pricing-hero-card::before { /* Top shine */
             content:''; position: absolute; top:0; left:0; right:0; height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
         }
-        .price-tag { font-size: 3rem; font-weight: 900; line-height: 1; margin: 10px 0 5px; }
-        .price-meta { color: var(--text-grey); font-size: 0.85rem; margin-bottom: 24px; display: block;}
+        .price-tag { font-size: 3.2rem; font-weight: 800; line-height: 1; margin: 10px 0 5px; color: white; }
+        .price-meta { color: var(--text-grey); font-size: 0.9rem; margin-bottom: 24px; display: block; font-weight: 500;}
         
         .checklist { list-style: none; margin-bottom: 30px; }
-        .checklist li { display: flex; align-items: start; gap: 12px; margin-bottom: 14px; color: #e2e8f0; font-size: 0.9rem; }
+        .checklist li { display: flex; align-items: start; gap: 12px; margin-bottom: 16px; color: #e2e8f0; font-size: 0.95rem; font-weight: 500;}
         .check-icon {
-            background: rgba(79, 70, 229, 0.2); color: #818cf8; border-radius: 50%; width: 20px; height: 20px;
-            display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; margin-top: 3px;
+            background: var(--primary-dim); color: var(--primary); border-radius: 50%; width: 22px; height: 22px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; margin-top: 2px;
         }
 
         /* --- 6. FEATURES (ZIG ZAG) --- */
@@ -165,23 +168,23 @@
             background: radial-gradient(circle at center, rgba(255,255,255,0.03), transparent);
             border-radius: 16px; border: 1px solid var(--glass-border); position: relative;
         }
-        .visual-emoji { font-size: 5rem; animation: float 6s infinite ease-in-out; }
+        .visual-emoji { font-size: 6rem; animation: float 6s infinite ease-in-out; }
 
         .tag-pill {
-            display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px;
+            display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 0.5px;
         }
-        .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .tag-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .tag-blue { background: var(--primary-dim); color: #8ba1ff; border: 1px solid rgba(69, 100, 255, 0.3); }
+        .tag-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
 
         /* --- 7. BENTO GRID --- */
         .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 60px; }
         .bento-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 240px; }
-        .bento-icon { font-size: 2rem; margin-bottom: 15px; }
+        .bento-icon { font-size: 2.5rem; margin-bottom: 15px; }
 
         /* --- 8. FAQ --- */
-        .faq-item { border-bottom: 1px solid var(--glass-border); padding: 20px 0; }
-        .faq-item summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        .faq-item p { margin-top: 10px; font-size: 0.95rem; line-height: 1.6; opacity: 0.8; }
+        .faq-item { border-bottom: 1px solid var(--glass-border); padding: 24px 0; }
+        .faq-item summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem;}
+        .faq-item p { margin-top: 12px; font-size: 1rem; line-height: 1.6; color: var(--text-grey); }
 
         /* --- FOOTER --- */
         footer { border-top: 1px solid var(--glass-border); padding: 60px 0; margin-top: 100px; text-align: center; font-size: 0.9rem; color: var(--text-grey); }
@@ -249,8 +252,8 @@
 
                 <div class="pricing-hero-card reveal active" id="buy" style="transition-delay: 0.2s;">
                     <div style="margin-bottom: 20px;">
-                        <h3 style="font-size: 1.4rem; margin-bottom: 5px;">Accès POWER</h3>
-                        <p style="color:var(--text-grey); font-size:0.9rem;">Pack complet Fournisseurs & IA</p>
+                        <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Accès POWER</h3>
+                        <p style="color:var(--text-grey); font-size:0.95rem;">Pack complet Fournisseurs & IA</p>
                     </div>
 
                     <div class="price-tag">29,99€</div>
@@ -266,7 +269,7 @@
                     <a href="#" class="btn-lg btn-primary" style="justify-content: center; width: 100%;">
                         Acheter maintenant
                     </a>
-                    <p style="text-align: center; font-size: 0.75rem; color: var(--text-grey); margin-top: 15px;">
+                    <p style="text-align: center; font-size: 0.8rem; color: var(--text-grey); margin-top: 15px;">
                         🔒 Paiement sécurisé SSL via Stripe
                     </p>
                 </div>
@@ -276,8 +279,8 @@
     </section>
 
     <div class="container" style="text-align: center; margin-bottom: 100px; opacity: 0.6;">
-        <p style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Utilisé par les e-commerçants de demain</p>
-        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-weight: 700; font-size: 1.5rem; color: #52525b;">
+        <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 700;">Utilisé par les e-commerçants de demain</p>
+        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; font-weight: 800; font-size: 1.5rem; color: #52525b;">
             <span>SHOPIFY</span><span>STRIPE</span><span>AMAZON FBA</span><span>WOO</span>
         </div>
     </div>
@@ -288,7 +291,7 @@
             <div class="split-section reveal">
                 <div class="split-visual glass-panel order-mob">
                     <span class="visual-emoji">🌍</span>
-                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem;">Analysé par l'IA</div>
+                    <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.6); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;">Analysé par l'IA</div>
                 </div>
                 <div>
                     <span class="tag-pill tag-blue">Sourcing Mondial</span>
@@ -372,16 +375,16 @@
     <section class="section-spacer" style="text-align: center;">
         <div class="container reveal">
             <h2 style="font-size: 3rem; margin-bottom: 20px;">Prêt à passer au niveau supérieur ?</h2>
-            <p style="margin-bottom: 40px;">Rejoignez les entrepreneurs qui utilisent la Data pour réussir.</p>
+            <p style="margin-bottom: 40px; font-size: 1.2rem;">Rejoignez les entrepreneurs qui utilisent la Data pour réussir.</p>
             <a href="#buy" class="btn-lg btn-primary" style="display: inline-flex;">Débloquer mon accès POWER</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div style="font-weight: 900; font-size: 1.5rem; color: white; margin-bottom: 20px;">POWER</div>
+            <div style="font-weight: 800; font-size: 1.5rem; color: white; margin-bottom: 20px;">POWER</div>
             <p>&copy; 2024 POWER Technologies. Tous droits réservés.</p>
-            <div style="margin-top: 20px; font-size: 0.8rem;">
+            <div style="margin-top: 20px; font-size: 0.85rem;">
                 <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">CGV</a>
                 <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">Mentions Légales</a>
                 <a href="#" style="color: var(--text-grey); margin: 0 10px; text-decoration: none;">Contact</a>
