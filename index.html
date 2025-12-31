@@ -13,9 +13,10 @@
     /* --- 1. CORE VARIABLES & THEME --- */
     :root {
       --primary: #4564FF;
+      --primary-dark: #3550db;
       --primary-glow: rgba(69, 100, 255, 0.5);
       --accent: #9d4eff;
-
+      
       --bg-deep: #020203;
       --text-white: #ffffff;
       --text-grey: #9ca3af;
@@ -25,6 +26,7 @@
       /* GLASS RECIPE */
       --glass-bg: rgba(20, 20, 25, 0.6);
       --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-highlight: rgba(255,255,255,0.05);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -41,7 +43,7 @@
     /* --- 2. BACKGROUND FX & ASSETS --- */
     .ambient-light {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
-      background:
+      background: 
         radial-gradient(circle at 10% 20%, rgba(69, 100, 255, 0.12), transparent 40%),
         radial-gradient(circle at 90% 50%, rgba(157, 78, 255, 0.1), transparent 40%);
       pointer-events: none;
@@ -49,43 +51,33 @@
 
     .hero-bg-asset {
       position: absolute;
-      top: 48%;
-      left: 50%;
+      top: 48%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 800px;
-      max-width: 90vw;
-      opacity: 0.08;
-      z-index: 0;
-      pointer-events: none;
+      width: 800px; max-width: 90vw;
+      opacity: 0.08; z-index: 0; pointer-events: none;
       filter: blur(1px) drop-shadow(0 0 50px var(--primary));
       animation: floatBox 10s ease-in-out infinite;
     }
 
     /* --- 3. UTILITIES & ANIMATIONS --- */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
-    .section-spacer { padding: 120px 0; }
-
+    .section-spacer { padding: 100px 0; }
+    
     h1, h2, h3 { letter-spacing: -0.03em; color: white; font-weight: 800; line-height: 1.1; }
     p { color: var(--text-grey); font-weight: 500; font-size: 1.1rem; }
 
-    /* Animation Gradient Text */
     .highlight-text {
       background: linear-gradient(135deg, #fff 0%, #8ba1ff 50%, #fff 100%);
       background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       animation: gradientMove 4s linear infinite;
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(30px);
+      opacity: 0; transform: translateY(30px);
       transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
     }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
     @keyframes floatBox {
       0%, 100% { transform: translate(-50%, -50%) translateY(0); }
@@ -104,15 +96,22 @@
       100% { transform: translateX(200%) skewX(-15deg); }
     }
 
-    /* --- 4. NAVIGATION --- */
+    /* --- 4. NAVIGATION & TOP BAR --- */
+    .top-bar {
+      background: linear-gradient(90deg, #1e3a8a, #4564FF);
+      color: white; font-size: 0.85rem; font-weight: 700;
+      text-align: center; padding: 10px; z-index: 2000;
+      position: fixed; top: 0; left: 0; width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
     nav {
-      position: fixed; top: 24px; left: 50%; transform: translateX(-50%);
+      position: fixed; top: 48px; left: 50%; transform: translateX(-50%);
       width: auto; min-width: 600px; z-index: 1000;
       background: rgba(10, 10, 12, 0.8);
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      padding: 8px 12px;
+      border-radius: 100px; padding: 8px 12px;
       display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.4);
       transition: all 0.3s ease;
@@ -135,7 +134,6 @@
       position: relative; overflow: hidden;
     }
     .nav-btn:hover { transform: scale(1.05); box-shadow: 0 6px 30px rgba(69, 100, 255, 0.6); }
-
     .nav-btn::after {
       content: ''; position: absolute; top: 0; left: 0; width: 50%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
@@ -143,50 +141,33 @@
       animation: shimmer 3s infinite;
     }
 
-    /* BURGER MENU STYLES */
+    /* HAMBURGER */
     .hamburger {
       display: none; cursor: pointer; flex-direction: column; justify-content: center; align-items: center;
       width: 40px; height: 40px; gap: 5px; z-index: 1002;
     }
-    .hamburger span {
-      width: 24px; height: 2px; background-color: white; border-radius: 2px; transition: all 0.3s ease-in-out;
-    }
+    .hamburger span { width: 24px; height: 2px; background-color: white; border-radius: 2px; transition: all 0.3s; }
     .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .mobile-menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      background: rgba(2, 2, 3, 0.95);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      z-index: 1001;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-      gap: 30px;
-      opacity: 0; visibility: hidden;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translateY(-20px);
+      background: rgba(2, 2, 3, 0.98); backdrop-filter: blur(20px); z-index: 1001;
+      display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+      opacity: 0; visibility: hidden; transition: all 0.4s; transform: translateY(-20px);
     }
     .mobile-menu-overlay.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    
-    .mobile-nav-link {
-      font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none;
-      opacity: 0; transform: translateY(20px); transition: 0.3s;
-    }
+    .mobile-nav-link { font-size: 1.5rem; font-weight: 700; color: white; text-decoration: none; opacity: 0; transform: translateY(20px); transition: 0.3s; }
     .mobile-menu-overlay.active .mobile-nav-link { opacity: 1; transform: translateY(0); }
-    .mobile-menu-overlay.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
-    .mobile-menu-overlay.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
-    .mobile-menu-overlay.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
-    .mobile-menu-overlay.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
-
-
+    
     /* --- 5. HERO SECTION --- */
     .hero-wrapper {
       padding-top: 180px; padding-bottom: 100px; min-height: 90vh;
       display: flex; align-items: center; position: relative;
     }
-
     .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
-
+    
     .scarcity-pill {
       background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 600;
@@ -194,8 +175,8 @@
     }
     .timer { color: white; font-family: 'Courier New', monospace; font-weight: 700; letter-spacing: 1px; }
 
-    .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 24px; position: relative; z-index: 2;}
-
+    .hero-title { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 24px; }
+    
     .cta-group { display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; }
     .btn-lg {
       padding: 18px 36px; border-radius: 16px; font-weight: 700; text-decoration: none; font-size: 1.05rem;
@@ -206,221 +187,154 @@
       box-shadow: 0 10px 40px rgba(69, 100, 255, 0.3); border-top: 1px solid rgba(255,255,255,0.2);
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 50px rgba(69, 100, 255, 0.5); }
-    .btn-primary::after {
-      content: ''; position: absolute; top: 0; left: 0; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: translateX(-150%) skewX(-15deg);
-      animation: shimmer 3s infinite 1s;
-    }
-
     .btn-secondary { background: rgba(255,255,255,0.05); color: white; border: 1px solid var(--glass-border); }
     .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
     .glass-card {
       background: var(--glass-bg); backdrop-filter: blur(40px);
-      border: 1px solid var(--glass-border);
-      border-radius: 30px; padding: 40px;
+      border: 1px solid var(--glass-border); border-radius: 30px; padding: 40px;
       position: relative; overflow: hidden;
       box-shadow: 0 0 0 1px rgba(69, 100, 255, 0.3), 0 20px 60px rgba(0,0,0,0.6);
-      z-index: 10;
-      transform: perspective(1000px) rotateY(-2deg);
-      transition: 0.5s;
+      z-index: 10; transform: perspective(1000px) rotateY(-2deg); transition: 0.5s;
     }
     .glass-card:hover { transform: perspective(1000px) rotateY(0deg); }
 
     .popular-badge {
-      position: absolute; top: 0; right: 0;
-      background: var(--primary); color: white;
-      font-size: 0.75rem; font-weight: 800; padding: 6px 12px;
-      border-bottom-left-radius: 16px; text-transform: uppercase;
+      position: absolute; top: 0; right: 0; background: var(--primary); color: white;
+      font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-bottom-left-radius: 16px; text-transform: uppercase;
     }
 
     .price-display { font-size: 3.5rem; font-weight: 800; line-height: 1; margin: 10px 0; letter-spacing: -2px; }
-    .price-sub { font-size: 0.9rem; color: var(--text-grey); display: block; margin-bottom: 20px; }
-
     .check-list li {
-      display: flex; align-items: start; gap: 12px; margin-bottom: 16px;
-      font-size: 0.95rem; color: #e4e4e7;
+      display: flex; align-items: start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; color: #e4e4e7;
       opacity: 0; animation: fadeUpList 0.5s forwards;
     }
     .check-list li:nth-child(1) { animation-delay: 0.2s; }
     .check-list li:nth-child(2) { animation-delay: 0.4s; }
     .check-list li:nth-child(3) { animation-delay: 0.6s; }
     .check-list li:nth-child(4) { animation-delay: 0.8s; }
-
-    @keyframes fadeUpList {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    
+    @keyframes fadeUpList { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .icon-check {
       background: var(--primary); color: white; width: 20px; height: 20px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; margin-top: 3px;
     }
 
-    /* --- 6. MOBILE STICKY CTA --- */
-    .mobile-sticky-cta {
-      display: none;
-      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-      width: 90%; max-width: 400px;
-      background: rgba(10, 10, 12, 0.9); backdrop-filter: blur(20px);
-      padding: 12px 20px; border-radius: 100px;
-      border: 1px solid var(--glass-border);
-      z-index: 1000;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-      align-items: center; justify-content: space-between;
-      animation: slideUpBottom 0.6s ease-out 1s backwards;
-    }
-    @keyframes slideUpBottom {
-      from { transform: translate(-50%, 100px); opacity: 0; }
-      to { transform: translate(-50%, 0); opacity: 1; }
-    }
+    /* --- 6. SECTIONS ADD-ONS --- */
+    
+    /* STEPS */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
+    .step-card { position: relative; padding: 20px; border-left: 1px solid rgba(255,255,255,0.1); }
+    .step-number { font-size: 4rem; font-weight: 800; color: rgba(255,255,255,0.05); position: absolute; top: -10px; left: 10px; line-height: 1; z-index: 0; }
+    .step-content { position: relative; z-index: 1; padding-top: 10px; padding-left: 10px; }
+    .step-title { font-size: 1.25rem; color: white; margin-bottom: 10px; font-weight: 700; }
 
-    /* --- 7. FEATURES & SECTIONS --- */
-    .split-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-        margin-bottom: 120px;
-        position: relative;
+    /* COMPARISON */
+    .comparison-wrapper {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+      border-radius: 30px; border: 1px solid var(--glass-border); padding: 40px; margin-top: 40px;
     }
+    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; }
+    .comp-grid::after {
+      content: 'VS'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      background: var(--bg-deep); border: 1px solid var(--glass-border);
+      width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.9rem; z-index: 2; color: white;
+    }
+    .comp-col h3 { font-size: 1.3rem; margin-bottom: 25px; text-align: center; font-weight: 800; }
+    .comp-list { list-style: none; }
+    .comp-list li {
+      display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+      font-size: 0.95rem; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .cross-icon { color: #ef4444; font-size: 1.2rem; min-width: 24px;}
+    .check-icon-big { color: #4ade80; font-size: 1.2rem; min-width: 24px;}
 
+    /* SPLIT SECTION */
+    .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; position: relative; }
     .tag {
       text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;
       color: #8ba1ff; margin-bottom: 16px; display: inline-block;
-      background: rgba(69, 100, 255, 0.1); padding: 8px 16px; border-radius: 20px;
-      border: 1px solid rgba(69, 100, 255, 0.2);
+      background: rgba(69, 100, 255, 0.1); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(69, 100, 255, 0.2);
     }
-
-    /* ---- CORRECTION ICI : IMAGE DROITE ---- */
     .screenshot-wrapper {
-      position: relative; border-radius: 20px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-      
-      /* On s'assure que c'est bien droit */
-      transform: none; 
-      transition: 0.5s;
+      position: relative; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5); transition: 0.5s;
     }
-    .screenshot-wrapper:hover { 
-        /* Zoom léger à plat uniquement */
-        transform: scale(1.02); 
-    }
-    /* -------------------------------------- */
-
+    .screenshot-wrapper:hover { transform: scale(1.02); }
     .screenshot-img { width: 100%; display: block; }
-
-    .asset-container {
-      display: flex; align-items: center; justify-content: center;
-      height: 350px; position: relative;
-     
-    }
-    .asset-3d {
-      max-width: 80%; max-height: 300px;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
-      position: relative;
-      z-index: 2;
-    }
-
-    /* GLOW DERRIÈRE LES OBJETS */
+    
+    .asset-container { display: flex; align-items: center; justify-content: center; height: 350px; position: relative; }
+    .asset-3d { max-width: 80%; max-height: 300px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); position: relative; z-index: 2; }
     .blob-glow {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(69,100,255,0.25) 0%, transparent 70%);
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        filter: blur(40px);
-        opacity: 0.6;
+      position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(69,100,255,0.25) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; filter: blur(40px); opacity: 0.6;
     }
-    .blob-glow.purple {
-         background: radial-gradient(circle, rgba(157, 78, 255, 0.25) 0%, transparent 70%);
-    }
+    .blob-glow.purple { background: radial-gradient(circle, rgba(157, 78, 255, 0.25) 0%, transparent 70%); }
 
-    /* Bento Grid Reviews */
+    /* BENTO */
     .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
     .bento-item {
       background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
       border-radius: 24px; padding: 32px; transition: 0.3s;
-      display: flex; flex-direction: column; justify-content: space-between;
-      position: relative;
-      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
     }
-    .bento-item:hover {
-        background: rgba(255,255,255,0.04);
-        transform: translateY(-5px);
-        border-color: rgba(255,255,255,0.2);
-        box-shadow: 0 0 30px rgba(69, 100, 255, 0.1);
-    }
+    .bento-item:hover { background: rgba(255,255,255,0.04); transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
     .bento-icon { height: 80px; width: auto; margin-bottom: 20px; object-fit: contain;}
-
+    
     .review-header { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
     .avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #333, #555); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;}
 
-    /* --- FAQ --- */
-    .faq-details {
-      background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
-      border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: 0.3s;
-    }
+    /* FAQ */
+    .faq-details { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: 0.3s; }
     .faq-details[open] { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
     .faq-summary { padding: 20px; cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; }
     .faq-body { padding: 0 20px 20px; color: var(--text-grey); font-size: 0.95rem; }
 
     /* CTA Arrow */
     .cta-arrow-bg {
-      position: absolute;
-      top: 24px;
-      right: 10%;
-      width: 340px;
-      opacity: 0.45;
-      pointer-events: none;
-      transform: rotate(12deg);
-      z-index: 1;
-      filter: drop-shadow(0 0 30px rgba(69, 100, 255, 0.4));
+      position: absolute; top: 24px; right: 10%; width: 340px; opacity: 0.45; pointer-events: none;
+      transform: rotate(12deg); z-index: 1; filter: drop-shadow(0 0 30px rgba(69, 100, 255, 0.4));
       animation: floatArrow 7.5s ease-in-out infinite;
     }
 
-    /* --- MOBILE RESPONSIVE --- */
-    @media (max-width: 992px) {
-      nav {
-        min-width: unset;
-        width: calc(100% - 24px);
-        top: 12px;
-        padding: 10px 16px;
-        justify-content: space-between;
-        position: fixed;
-      }
-      .logo-img { margin-left: 0; }
+    /* MOBILE STICKY */
+    .mobile-sticky-cta {
+      display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      width: 90%; max-width: 400px; background: rgba(10, 10, 12, 0.9); backdrop-filter: blur(20px);
+      padding: 12px 20px; border-radius: 100px; border: 1px solid var(--glass-border); z-index: 1000;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5); align-items: center; justify-content: space-between;
+      animation: slideUpBottom 0.6s ease-out 1s backwards;
+    }
+    @keyframes slideUpBottom { from { transform: translate(-50%, 100px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
 
+    /* --- RESPONSIVE --- */
+    @media (max-width: 992px) {
+      nav { min-width: unset; width: calc(100% - 24px); top: 50px; padding: 10px 16px; }
       .nav-links, nav .nav-btn { display: none; }
       .hamburger { display: flex; }
-
       .mobile-sticky-cta { display: flex; }
-
-      .hero-wrapper { padding-top: 120px; text-align: center; }
+      
+      .hero-wrapper { padding-top: 140px; text-align: center; }
       .hero-grid { grid-template-columns: 1fr; gap: 40px; display: flex; flex-direction: column; }
       .cta-group { justify-content: center; }
-
-      .hero-bg-asset { width: 100%; top: 32%; opacity: 0.10; }
-
-      .glass-card { width: 100%; transform: none; }
-      .glass-card:hover { transform: none; }
-
-      .split-section, .bento-grid { grid-template-columns: 1fr; gap: 60px; }
       
-      .split-section { display: flex; flex-direction: column; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;}
+      .comp-grid { grid-template-columns: 1fr; gap: 60px; }
+      .comp-grid::after { top: 48%; }
+
+      .split-section { display: flex; flex-direction: column; gap: 50px; }
+      .bento-grid { grid-template-columns: 1fr; }
       
-      .screenshot-wrapper { transform: none; }
-      .asset-container { height: 260px; margin-top: 10px; }
-      .asset-3d { max-width: 92%; max-height: 240px; }
-      .cta-arrow-bg { width: 190px; right: 6%; top: 16px; opacity: 0.28; }
+      .cta-arrow-bg { width: 150px; right: 5%; opacity: 0.3; }
     }
   </style>
 </head>
 
 <body>
+
+
   <div class="ambient-light"></div>
   <img src="power-box.png" alt="POWER Box Background" class="hero-bg-asset">
 
@@ -486,7 +400,9 @@
           <a href="TON_LIEN_STRIPE" class="btn-lg btn-primary" style="justify-content: center; width: 100%; margin-top: 20px;">
             Rejoindre maintenant
           </a>
-          <p style="text-align: center; font-size: 0.75rem; margin-top: 15px; opacity: 0.6;">Sécurisé par Stripe & SSL</p>
+          <p style="text-align: center; font-size: 0.75rem; margin-top: 15px; opacity: 0.6;">
+            🔒 Paiement 100% sécurisé (SSL)
+          </p>
         </div>
       </div>
     </div>
@@ -509,7 +425,6 @@
               <img src="carte-fournisseur.png" alt="Interface Carte Fournisseur" class="screenshot-img">
             </div>
         </div>
-        
         <div>
           <span class="tag">Sourcing International</span>
           <h2>Carte Fournisseurs IA</h2>
@@ -535,10 +450,37 @@
             <li><span class="icon-check">✓</span> Stratégie Marketing incluse</li>
           </ul>
         </div>
-
         <div class="asset-container">
             <div class="blob-glow purple"></div>
-            <img src="power-billet.png" alt="Money 3D" class="asset-3d" style="animation-delay: -2s;">
+            <img src="power-billet.png" alt="Money 3D" class="asset-3d">
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-bottom: 100px;">
+        <h2 style="text-align: center; margin-bottom: 10px;">Votre succès en 3 étapes</h2>
+        <p style="text-align: center;">Une roadmap simple pour passer de l'idée à la vente.</p>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="step-title">Trouvez votre Winner</div>
+              <p style="font-size: 0.9rem;">Utilisez notre algorithme pour détecter le produit qui va buzzer avant tout le monde.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="step-title">Générez le Plan</div>
+              <p style="font-size: 0.9rem;">Laissez l'IA rédiger votre business plan, vos coûts et votre stratégie marketing complète.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="step-title">Contactez l'Usine</div>
+              <p style="font-size: 0.9rem;">Débloquez le contact direct du fournisseur et lancez la production au meilleur prix.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -569,7 +511,36 @@
     </div>
   </section>
 
-  <section id="reviews" class="container section-spacer reveal">
+  <section class="container section-spacer reveal">
+    <h2 style="text-align: center; margin-bottom: 10px;">Pourquoi choisir POWER ?</h2>
+    <p style="text-align: center; margin-bottom: 40px;">Arrêtez de perdre du temps avec des méthodes obsolètes.</p>
+    
+    <div class="comparison-wrapper">
+      <div class="comp-grid">
+        <div class="comp-col" style="opacity: 0.6;">
+          <h3 style="color: #ef4444;">❌ Les autres méthodes</h3>
+          <ul class="comp-list">
+            <li><span class="cross-icon">✕</span> Abonnements coûteux (200€/mois)</li>
+            <li><span class="cross-icon">✕</span> Fournisseurs AliExpress saturés</li>
+            <li><span class="cross-icon">✕</span> Pas de Business Plan structuré</li>
+            <li><span class="cross-icon">✕</span> Recherche manuelle interminable</li>
+          </ul>
+        </div>
+  
+        <div class="comp-col">
+          <h3 style="color: #4ade80;">⚡ L'écosystème POWER</h3>
+          <ul class="comp-list">
+            <li><span class="check-icon-big">✓</span> Paiement unique à vie (29,99€)</li>
+            <li><span class="check-icon-big">✓</span> Usines directes (Prix grossistes)</li>
+            <li><span class="check-icon-big">✓</span> Stratégie IA générée en 1 clic</li>
+            <li><span class="check-icon-big">✓</span> Base de données mise à jour</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="container reveal" style="margin-bottom: 100px;">
     <h2 style="text-align: center; margin-bottom: 40px;">Ils ont débloqué leur potentiel</h2>
     <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 0;">
       <div class="bento-item">
@@ -607,26 +578,31 @@
     </div>
   </section>
 
-  <section id="faq" class="container reveal" style="max-width: 800px; margin-bottom: 100px;">
+
+  <section id="faq" class="container reveal" style="max-width: 800px; margin: 100px auto;">
     <h2 style="text-align: center; margin-bottom: 50px;">Questions Fréquentes</h2>
     <details class="faq-details">
       <summary class="faq-summary">C'est vraiment un paiement unique ?</summary>
-      <div class="faq-body">Oui. Vous payez 29,99€ une seule fois et vous avez accès à vie.</div>
+      <div class="faq-body">Oui. Vous payez 29,99€ une seule fois et vous avez accès à vie. Pas de frais cachés, pas d'abonnement.</div>
     </details>
     <details class="faq-details">
       <summary class="faq-summary">Sous quel format sont les fichiers ?</summary>
-      <div class="faq-body">Les listes sont accessibles directement via notre interface web interactive.</div>
+      <div class="faq-body">Les listes sont accessibles directement via notre interface web interactive. Vous pouvez également exporter les données en CSV.</div>
     </details>
     <details class="faq-details">
       <summary class="faq-summary">Je suis débutant, est-ce pour moi ?</summary>
-      <div class="faq-body">Absolument. POWER est conçu pour guider les débutants.</div>
+      <div class="faq-body">Absolument. POWER est conçu pour guider les débutants de A à Z, de la recherche d'idée à la recherche de fournisseur.</div>
+    </details>
+    <details class="faq-details">
+      <summary class="faq-summary">Comment fonctionne la garantie ?</summary>
+      <div class="faq-body">Simple. Un email au support sous 14 jours suffit si vous n'avez pas obtenu les résultats promis (fournisseurs qualifiés).</div>
     </details>
   </section>
 
-  <section class="reveal" style="text-align: center; padding: 120px 0 140px; position: relative; overflow: hidden;">
+  <section class="reveal" style="text-align: center; padding: 100px 0 140px; position: relative; overflow: hidden;">
     <img src="power-fleche.png" alt="Arrow Up" class="cta-arrow-bg">
     <div class="container">
-      <h2 style="font-size: 3rem; margin-bottom: 30px; position: relative; z-index: 2;">Prêt à passer au niveau supérieur ?</h2>
+      <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 30px; position: relative; z-index: 2;">Prêt à passer au niveau supérieur ?</h2>
       <a href="#buy" class="btn-lg btn-primary" style="display: inline-flex; box-shadow: 0 0 60px rgba(69, 100, 255, 0.6); position: relative; z-index: 2;">
         Obtenir mon accès immédiat
       </a>
@@ -635,11 +611,17 @@
 
   <footer>
     <div class="container" style="text-align: center; border-top: 1px solid var(--glass-border); padding: 40px 0; color: #52525b; font-size: 0.9rem;">
-      &copy; 2025 POWER Technologies.
+      <p style="margin-bottom: 10px;">&copy; 2025 POWER Technologies.</p>
+      <div style="font-size: 0.8rem; opacity: 0.7;">
+        <a href="#" style="color: inherit; text-decoration: none; margin: 0 10px;">CGV</a>
+        <a href="#" style="color: inherit; text-decoration: none; margin: 0 10px;">Mentions Légales</a>
+        <a href="#" style="color: inherit; text-decoration: none; margin: 0 10px;">Contact</a>
+      </div>
     </div>
   </footer>
 
   <script>
+    // --- BURGER MENU ---
     function toggleMenu() {
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -652,11 +634,12 @@
       }
     }
 
+    // --- COUNTDOWN (SCARCITY) ---
     function startSmartTimer(durationDisplay) {
       let endTime = localStorage.getItem('power_offer_end');
       if (!endTime) {
         const now = new Date().getTime();
-        const duration = 48 * 60 * 60 * 1000;
+        const duration = 48 * 60 * 60 * 1000; // 48h
         endTime = now + duration;
         localStorage.setItem('power_offer_end', endTime);
       }
@@ -674,12 +657,14 @@
       }, 1000);
     }
 
+    // --- SCROLL REVEAL ---
     function reveal() {
       var reveals = document.querySelectorAll('.reveal');
       for (var i = 0; i < reveals.length; i++) {
         var windowheight = window.innerHeight;
         var revealtop = reveals[i].getBoundingClientRect().top;
-        if (revealtop < windowheight - 50) {
+        var revealpoint = 50;
+        if (revealtop < windowheight - revealpoint) {
           reveals[i].classList.add('active');
         }
       }
