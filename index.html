@@ -252,20 +252,39 @@
 
     /* SPLIT SECTION */
     .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; position: relative; }
+    
     .tag {
       text-transform: uppercase; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;
       color: #8ba1ff; margin-bottom: 16px; display: inline-block;
       background: rgba(69, 100, 255, 0.1); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(69, 100, 255, 0.2);
     }
+    
+    /* UPDATED: Wrapper unique pour uniformiser la taille */
+    .asset-container { 
+      display: flex; align-items: center; justify-content: center; 
+      min-height: 350px; /* Changed from fixed height to min-height */
+      position: relative; 
+    }
+    
     .screenshot-wrapper {
-      position: relative; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5); transition: 0.5s;
+      position: relative; 
+      border-radius: 20px; 
+      overflow: hidden; 
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+      transition: 0.5s;
+      width: 100%; /* Ensure it takes width */
+      aspect-ratio: 16/9; /* FORCE SAME FORMAT */
     }
     .screenshot-wrapper:hover { transform: scale(1.02); }
-    .screenshot-img { width: 100%; display: block; }
     
-    .asset-container { display: flex; align-items: center; justify-content: center; height: 350px; position: relative; }
-    .asset-3d { max-width: 80%; max-height: 300px; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5)); position: relative; z-index: 2; }
+    .screenshot-img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; /* Ensures image fills the 16/9 box without distortion */
+      display: block; 
+    }
+    
     .blob-glow {
       position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(69,100,255,0.25) 0%, transparent 70%);
       top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; filter: blur(40px); opacity: 0.6;
@@ -452,7 +471,9 @@
         </div>
         <div class="asset-container">
             <div class="blob-glow purple"></div>
-            <img src="power-billet.png" alt="Money 3D" class="asset-3d">
+            <div class="screenshot-wrapper">
+              <img src="business-plan.png" alt="Interface Business Plan" class="screenshot-img">
+            </div>
         </div>
       </div>
 
@@ -540,43 +561,7 @@
     </div>
   </section>
 
-  <section id="reviews" class="container reveal" style="margin-bottom: 100px;">
-    <h2 style="text-align: center; margin-bottom: 40px;">Ils ont débloqué leur potentiel</h2>
-    <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 0;">
-      <div class="bento-item">
-        <div class="review-header">
-          <div class="avatar">TR</div>
-          <div>
-            <strong style="color: white; display: block;">Thomas R.</strong>
-            <span style="font-size: 0.8rem; color: #4ade80;">+12k€ ce mois-ci</span>
-          </div>
-        </div>
-        <p style="font-size: 0.9rem;">"Le business plan généré par l'IA m'a littéralement sauvé 2 semaines de travail. La liste des fournisseurs est une mine d'or."</p>
-      </div>
-
-      <div class="bento-item">
-        <div class="review-header">
-          <div class="avatar">SL</div>
-          <div>
-            <strong style="color: white; display: block;">Sarah L.</strong>
-            <span style="font-size: 0.8rem; color: var(--primary);">E-commerçante</span>
-          </div>
-        </div>
-        <p style="font-size: 0.9rem;">"J'étais sceptique sur l'IA, mais les produits winners proposés étaient vraiment avant la tendance. Rentabilisé en 24h."</p>
-      </div>
-
-      <div class="bento-item">
-        <div class="review-header">
-          <div class="avatar">KB</div>
-          <div>
-            <strong style="color: white; display: block;">Karim B.</strong>
-            <span style="font-size: 0.8rem; color: var(--primary);">Dropshipper</span>
-          </div>
-        </div>
-        <p style="font-size: 0.9rem;">"Rien que pour la carte des fournisseurs sans intermédiaires, le prix est cadeau. L'interface est super fluide."</p>
-      </div>
-    </div>
-  </section>
+ 
 
 
   <section id="faq" class="container reveal" style="max-width: 800px; margin: 100px auto;">
