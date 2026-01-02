@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POWER | L'Écosystème IA pour E-commerçants</title>
+  <title>POWER | L'Écosystème Ultime E-commerce</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,8 @@
       --primary-dark: #3550db;
       --primary-glow: rgba(69, 100, 255, 0.5);
       --accent: #9d4eff;
+      --success: #10b981;
+      --danger: #ef4444;
       
       --bg-deep: #020203;
       --text-white: #ffffff;
@@ -229,27 +231,6 @@
     .step-content { position: relative; z-index: 1; padding-top: 10px; padding-left: 10px; }
     .step-title { font-size: 1.25rem; color: white; margin-bottom: 10px; font-weight: 700; }
 
-    /* COMPARISON */
-    .comparison-wrapper {
-      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
-      border-radius: 30px; border: 1px solid var(--glass-border); padding: 40px; margin-top: 40px;
-    }
-    .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; position: relative; }
-    .comp-grid::after {
-      content: 'VS'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      background: var(--bg-deep); border: 1px solid var(--glass-border);
-      width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 0.9rem; z-index: 2; color: white;
-    }
-    .comp-col h3 { font-size: 1.3rem; margin-bottom: 25px; text-align: center; font-weight: 800; }
-    .comp-list { list-style: none; }
-    .comp-list li {
-      display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
-      font-size: 0.95rem; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .cross-icon { color: #ef4444; font-size: 1.2rem; min-width: 24px;}
-    .check-icon-big { color: #4ade80; font-size: 1.2rem; min-width: 24px;}
-
     /* SPLIT SECTION */
     .split-section { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px; position: relative; }
     
@@ -259,10 +240,21 @@
       background: rgba(69, 100, 255, 0.1); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(69, 100, 255, 0.2);
     }
     
-    /* UPDATED: Wrapper unique pour uniformiser la taille */
+    /* NICHE TAGS */
+    .niche-grid {
+        display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px;
+    }
+    .niche-pill {
+        background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+        padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; color: #d4d4d8; font-weight: 600;
+        transition: 0.3s;
+    }
+    .niche-pill:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: white; }
+
+    /* SCREENSHOTS & ASSETS */
     .asset-container { 
       display: flex; align-items: center; justify-content: center; 
-      min-height: 350px; /* Changed from fixed height to min-height */
+      min-height: 350px; 
       position: relative; 
     }
     
@@ -273,15 +265,15 @@
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
       transition: 0.5s;
-      width: 100%; /* Ensure it takes width */
-      aspect-ratio: 16/9; /* FORCE SAME FORMAT */
+      width: 100%; 
+      aspect-ratio: 16/9; 
     }
     .screenshot-wrapper:hover { transform: scale(1.02); }
     
     .screenshot-img { 
       width: 100%; 
       height: 100%; 
-      object-fit: cover; /* Ensures image fills the 16/9 box without distortion */
+      object-fit: cover; 
       display: block; 
     }
     
@@ -291,8 +283,47 @@
     }
     .blob-glow.purple { background: radial-gradient(circle, rgba(157, 78, 255, 0.25) 0%, transparent 70%); }
 
-    /* BENTO */
-    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+    /* ACADEMY CARDS */
+    .academy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
+    .academy-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+        border: 1px solid var(--glass-border); border-radius: 24px; padding: 24px;
+        position: relative; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column;
+    }
+    .academy-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(157, 78, 255, 0.15); }
+    .academy-icon { font-size: 2.2rem; margin-bottom: 15px; }
+    .academy-tag { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); color: white; font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1); }
+    
+    .academy-list { margin-top: 15px; list-style: none; padding-left: 0; }
+    .academy-list li { color: var(--text-grey); font-size: 0.85rem; margin-bottom: 6px; display: flex; align-items: start; gap: 8px; line-height: 1.4; }
+    .academy-list li::before { content: '•'; color: var(--primary); font-weight: bold; }
+
+    /* --- SECTION VERSUS (Pain vs Gain) --- */
+    .versus-container {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px;
+    }
+    .versus-card {
+        border-radius: 24px; padding: 40px; position: relative;
+    }
+    .versus-card.pain {
+        background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .versus-card.gain {
+        background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.3);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.1);
+    }
+    .versus-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; }
+    .pain .versus-title { color: var(--danger); }
+    .gain .versus-title { color: var(--success); }
+    
+    .versus-list li {
+        display: flex; align-items: center; gap: 12px; margin-bottom: 15px; font-size: 1rem; color: #e4e4e7;
+    }
+    .pain-icon { color: var(--danger); font-weight: bold; font-size: 1.2rem; min-width: 20px; }
+    .gain-icon { color: var(--success); font-weight: bold; font-size: 1.2rem; min-width: 20px; }
+
+    /* BENTO (Restored from image) */
+    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 100px; margin-bottom: 100px; }
     .bento-item {
       background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
       border-radius: 24px; padding: 32px; transition: 0.3s;
@@ -301,9 +332,6 @@
     .bento-item:hover { background: rgba(255,255,255,0.04); transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
     .bento-icon { height: 80px; width: auto; margin-bottom: 20px; object-fit: contain;}
     
-    .review-header { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
-    .avatar { width: 40px; height: 40px; background: linear-gradient(135deg, #333, #555); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;}
-
     /* FAQ */
     .faq-details { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 16px; margin-bottom: 16px; overflow: hidden; transition: 0.3s; }
     .faq-details[open] { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); }
@@ -340,11 +368,10 @@
       
       .steps-grid { grid-template-columns: 1fr; }
       .step-card { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;}
-      .comp-grid { grid-template-columns: 1fr; gap: 60px; }
-      .comp-grid::after { top: 48%; }
-
+      .academy-grid { grid-template-columns: 1fr; } 
       .split-section { display: flex; flex-direction: column; gap: 50px; }
       .bento-grid { grid-template-columns: 1fr; }
+      .versus-container { grid-template-columns: 1fr; }
       
       .cta-arrow-bg { width: 150px; right: 5%; opacity: 0.3; }
     }
@@ -391,13 +418,10 @@
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content reveal">
-          <div class="scarcity-pill">
-            <span>🔥 Offre de lancement -48h</span>
-            <span class="timer" id="countdown">00:00:00</span>
-          </div>
+
           <h1 class="hero-title">L'avantage déloyal pour <span class="highlight-text">exploser</span> en E-commerce.</h1>
           <p>
-            Ne cherchez plus. POWER centralise <strong>100,000+ fournisseurs vérifiés</strong>, une IA de business plan et les produits tendances avant tout le monde.
+            Ne cherchez plus. POWER centralise <strong>+5000 fournisseurs vérifiés</strong>, une IA de business plan et les guides stratégiques pour lancer votre marque.
           </p>
           <div class="cta-group">
             <a href="#buy" class="btn-lg btn-primary">Débloquer l'accès • 29,99€</a>
@@ -411,10 +435,10 @@
           <div class="price-display">29,99€</div>
           <span class="price-sub" style="color: #4ade80; margin-bottom: 24px;">Paiement en une fois. Pas d'abonnement.</span>
           <ul class="check-list">
-            <li><span class="icon-check">✓</span> Accès Carte Fournisseurs Monde (IA)</li>
-            <li><span class="icon-check">✓</span> Générateur Business Plan Illimité</li>
-            <li><span class="icon-check">✓</span> Accès produits Winners (Trends)</li>
-            <li><span class="icon-check">✓</span> Bonus : Ebooks & Influence</li>
+            <li><span class="icon-check">✓</span> <strong>+5000 Fournisseurs 100% fiables</strong></li>
+            <li><span class="icon-check">✓</span> Générateur Business Plan & IA</li>
+            <li><span class="icon-check">✓</span> Ebooks Marketing & Branding</li>
+            <li><span class="icon-check">✓</span> Guide Shopify & Expatriation</li>
           </ul>
           <a href="TON_LIEN_STRIPE" class="btn-lg btn-primary" style="justify-content: center; width: 100%; margin-top: 20px;">
             Rejoindre maintenant
@@ -446,13 +470,23 @@
         </div>
         <div>
           <span class="tag">Sourcing International</span>
-          <h2>Carte Fournisseurs IA</h2>
+          <h2>+5000 Fournisseurs Fiables</h2>
           <p style="margin-top: 20px;">
-            L'IA analyse les données douanières pour vous donner les contacts directs des usines. Plus d'intermédiaires. Visualisez le monde entier.
+            Accédez à notre carnet d'adresse privé. Fini les intermédiaires douteux. Lancez votre marque avec des usines vérifiées.
           </p>
+          <div class="niche-grid">
+              <span class="niche-pill">Vêtements & Mode</span>
+              <span class="niche-pill">Parfums & Cosmétique</span>
+              <span class="niche-pill">Automobile</span>
+              <span class="niche-pill">Bougies</span>
+              <span class="niche-pill">High-Tech</span>
+              <span class="niche-pill">Jouets & Bébé</span>
+              <span class="niche-pill">Cuisine</span>
+              <span class="niche-pill">Sport</span>
+          </div>
           <ul class="check-list" style="margin-top: 20px;">
-            <li><span class="icon-check">✓</span> +100,000 Usines vérifiées</li>
-            <li><span class="icon-check">✓</span> Filtrage par niche et pays</li>
+            <li><span class="icon-check">✓</span> Pas de minimum de commande élevé</li>
+            <li><span class="icon-check">✓</span> Fournisseurs 100% Vérifiés</li>
           </ul>
         </div>
       </div>
@@ -460,13 +494,13 @@
       <div class="split-section reveal">
         <div>
           <span class="tag">Génération IA</span>
-          <h2>Business Plan en 1 Clic</h2>
+          <h2>Business Plan & IA</h2>
           <p style="margin-top: 20px;">
-            Transformez une idée en plan d'action chiffré. Idéal pour convaincre des investisseurs ou structurer votre lancement.
+            Transformez une idée en plan d'action chiffré. Utilisez nos Prompts IA exclusifs pour automatiser votre activité.
           </p>
           <ul class="check-list" style="margin-top: 20px;">
             <li><span class="icon-check">✓</span> Prévisionnel financier automatique</li>
-            <li><span class="icon-check">✓</span> Stratégie Marketing incluse</li>
+            <li><span class="icon-check">✓</span> Bibliothèque de Prompts IA incluse</li>
           </ul>
         </div>
         <div class="asset-container">
@@ -477,29 +511,114 @@
         </div>
       </div>
 
+      <div class="reveal" style="margin-top: 100px;">
+        <h2 style="text-align: center;">Ne jouez pas à la roulette russe.</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Pourquoi échouer seul quand vous pouvez réussir avec les bons outils ?</p>
+        
+        <div class="versus-container">
+            <div class="versus-card pain">
+                <div class="versus-title">❌ Le Débutant Seul</div>
+                <ul class="versus-list">
+                    <li><span class="pain-icon">×</span> Cherche des fournisseurs pendant des semaines</li>
+                    <li><span class="pain-icon">×</span> Se fait arnaquer sur Alibaba ou AliExpress</li>
+                    <li><span class="pain-icon">×</span> N'a pas de Business Plan structuré</li>
+                    <li><span class="pain-icon">×</span> Perd de l'argent en publicités mal ciblées</li>
+                    <li><span class="pain-icon">×</span> Abandonne après 2 mois</li>
+                </ul>
+            </div>
+            <div class="versus-card gain">
+                <div class="popular-badge">VOUS</div>
+                <div class="versus-title">✅ Membre POWER</div>
+                <ul class="versus-list">
+                    <li><span class="gain-icon">✓</span> Accès immédiat à 5000+ usines vérifiées</li>
+                    <li><span class="gain-icon">✓</span> Lance sa marque sans minimum de commande</li>
+                    <li><span class="gain-icon">✓</span> Suit un plan d'action chiffré par l'IA</li>
+                    <li><span class="gain-icon">✓</span> Copie les stratégies marketing qui marchent</li>
+                    <li><span class="gain-icon">✓</span> Encaisse ses premières ventes rapidement</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top: 120px; margin-bottom: 60px;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+          <span class="tag" style="background: rgba(157, 78, 255, 0.1); border-color: rgba(157, 78, 255, 0.2); color: #c084fc;">
+            L'ENCYCLOPÉDIE DU E-COMMERCE
+          </span>
+          <h2 style="margin-top: 15px;">POWER Academy™</h2>
+          <p style="margin-top: 10px; font-size: 1rem;">
+            Un condensé de stratégies éprouvées et de ressources exclusives pour entreprendre sans limite.
+          </p>
+        </div>
+
+        <div class="academy-grid">
+            <div class="academy-card">
+                <div class="academy-tag">CRÉATION</div>
+                <div class="academy-icon">🚀</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Lancement & Branding</h3>
+                <ul class="academy-list">
+                    <li>Guide création boutique Shopify</li>
+                    <li>Lancer son Business Physique</li>
+                    <li>Guide Création de Marque</li>
+                    <li>Niches : Sport, Cuisine, Gaming, Auto, Animaux...</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">VISIBILITÉ</div>
+                <div class="academy-icon">📱</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 10px;">Marketing & Réseaux</h3>
+                <ul class="academy-list">
+                    <li>4 Ebooks : X, YouTube, TikTok, Twitch</li>
+                    <li>Ebook Créateur Snap</li>
+                    <li>Liste d'Agents d'Influenceurs</li>
+                    <li>Stratégies de contenu viral</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">OFFSHORE</div>
+                <div class="academy-icon">🌍</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 10px;">International & Finances</h3>
+                <ul class="academy-list">
+                    <li>Guide Expatriation (40 pays)</li>
+                    <li>Ebook "200 pays où s'expatrier"</li>
+                    <li>Ebook Gestion Bancaire</li>
+                    <li>Pack Logistique & Transitaire</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">PRODUCTIVITÉ</div>
+                <div class="academy-icon">🤖</div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 10px;">IA & Négociation</h3>
+                <ul class="academy-list">
+                    <li>Bibliothèque de Prompts IA</li>
+                    <li>L'Art de la Négociation</li>
+                    <li>Agent Exclusif & Partenariats</li>
+                    <li>Automatisation business</li>
+                </ul>
+            </div>
+        </div>
+      </div>
       <div class="reveal" style="margin-bottom: 100px;">
         <h2 style="text-align: center; margin-bottom: 10px;">Votre succès en 3 étapes</h2>
-        <p style="text-align: center;">Une roadmap simple pour passer de l'idée à la vente.</p>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
             <div class="step-content">
-              <div class="step-title">Trouvez votre Winner</div>
-              <p style="font-size: 0.9rem;">Utilisez notre algorithme pour détecter le produit qui va buzzer avant tout le monde.</p>
+              <div class="step-title">Sélectionnez la Niche</div>
+              <p style="font-size: 0.9rem;">Utilisez nos guides (Sport, Auto, Mode...) pour choisir le marché le plus rentable.</p>
             </div>
           </div>
           <div class="step-card">
             <div class="step-number">02</div>
             <div class="step-content">
-              <div class="step-title">Générez le Plan</div>
-              <p style="font-size: 0.9rem;">Laissez l'IA rédiger votre business plan, vos coûts et votre stratégie marketing complète.</p>
+              <div class="step-title">Créez l'Offre</div>
+              <p style="font-size: 0.9rem;">Suivez le guide Shopify et Branding pour créer une boutique professionnelle.</p>
             </div>
           </div>
           <div class="step-card">
             <div class="step-number">03</div>
             <div class="step-content">
-              <div class="step-title">Contactez l'Usine</div>
-              <p style="font-size: 0.9rem;">Débloquez le contact direct du fournisseur et lancez la production au meilleur prix.</p>
+              <div class="step-title">Sourcez & Scalez</div>
+              <p style="font-size: 0.9rem;">Contactez les fournisseurs fiables et lancez vos pubs avec nos stratégies TikTok/Snap.</p>
             </div>
           </div>
         </div>
@@ -528,59 +647,27 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </section>
-
-  <section class="container section-spacer reveal">
-    <h2 style="text-align: center; margin-bottom: 10px;">Pourquoi choisir POWER ?</h2>
-    <p style="text-align: center; margin-bottom: 40px;">Arrêtez de perdre du temps avec des méthodes obsolètes.</p>
-    
-    <div class="comparison-wrapper">
-      <div class="comp-grid">
-        <div class="comp-col" style="opacity: 0.6;">
-          <h3 style="color: #ef4444;">❌ Les autres méthodes</h3>
-          <ul class="comp-list">
-            <li><span class="cross-icon">✕</span> Abonnements coûteux (200€/mois)</li>
-            <li><span class="cross-icon">✕</span> Fournisseurs AliExpress saturés</li>
-            <li><span class="cross-icon">✕</span> Pas de Business Plan structuré</li>
-            <li><span class="cross-icon">✕</span> Recherche manuelle interminable</li>
-          </ul>
-        </div>
-  
-        <div class="comp-col">
-          <h3 style="color: #4ade80;">⚡ L'écosystème POWER</h3>
-          <ul class="comp-list">
-            <li><span class="check-icon-big">✓</span> Paiement unique à vie (29,99€)</li>
-            <li><span class="check-icon-big">✓</span> Usines directes (Prix grossistes)</li>
-            <li><span class="check-icon-big">✓</span> Stratégie IA générée en 1 clic</li>
-            <li><span class="check-icon-big">✓</span> Base de données mise à jour</li>
-          </ul>
-        </div>
       </div>
-    </div>
   </section>
-
- 
-
 
   <section id="faq" class="container reveal" style="max-width: 800px; margin: 100px auto;">
     <h2 style="text-align: center; margin-bottom: 50px;">Questions Fréquentes</h2>
+    
     <details class="faq-details">
-      <summary class="faq-summary">C'est vraiment un paiement unique ?</summary>
-      <div class="faq-body">Oui. Vous payez 29,99€ une seule fois et vous avez accès à vie. Pas de frais cachés, pas d'abonnement.</div>
+      <summary class="faq-summary">Quelle est l'avantage de l'ebook Power ?</summary>
+      <div class="faq-body">Cet ebook est un véritable gain de temps, il t'offre + 5000 fournisseurs 100% fiables pour que tu démarres ton activité dans les meilleures conditions !</div>
     </details>
+
     <details class="faq-details">
-      <summary class="faq-summary">Sous quel format sont les fichiers ?</summary>
-      <div class="faq-body">Les listes sont accessibles directement via notre interface web interactive. Vous pouvez également exporter les données en CSV.</div>
+      <summary class="faq-summary">Puis-je démarrer avec un petit capital ?</summary>
+      <div class="faq-body">Bien sur ! Nos fournisseurs n'exigent pas de minimums de commande importants. Tu peux donc commencer avec un capital modeste et augmenter le montant de tes commandes au fil du temps.</div>
     </details>
+
+
+
     <details class="faq-details">
-      <summary class="faq-summary">Je suis débutant, est-ce pour moi ?</summary>
-      <div class="faq-body">Absolument. POWER est conçu pour guider les débutants de A à Z, de la recherche d'idée à la recherche de fournisseur.</div>
-    </details>
-    <details class="faq-details">
-      <summary class="faq-summary">Comment fonctionne la garantie ?</summary>
-      <div class="faq-body">Simple. Un email au support sous 14 jours suffit si vous n'avez pas obtenu les résultats promis (fournisseurs qualifiés).</div>
+      <summary class="faq-summary">Quand est-ce que je recevrais mon ebook ?</summary>
+      <div class="faq-body">Tu recevras ton ebook et tes accès sur ta boite mail immédiatement après avoir passé commande.</div>
     </details>
   </section>
 
@@ -657,7 +744,8 @@
 
     window.addEventListener('scroll', reveal);
     window.onload = function () {
-      startSmartTimer(document.querySelector('#countdown'));
+      const timerElement = document.querySelector('#countdown');
+      if(timerElement) startSmartTimer(timerElement);
       reveal();
     };
   </script>
