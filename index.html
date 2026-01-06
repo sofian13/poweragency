@@ -209,6 +209,21 @@
 
     /* --- 6. SECTIONS ADD-ONS --- */
     
+    /* ACADEMY CARDS (Added back) */
+    .academy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
+    .academy-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+        border: 1px solid var(--glass-border); border-radius: 24px; padding: 24px;
+        position: relative; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column;
+    }
+    .academy-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(157, 78, 255, 0.15); }
+    .academy-icon { font-size: 2.2rem; margin-bottom: 15px; }
+    .academy-tag { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); color: white; font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1); }
+    
+    .academy-list { margin-top: 15px; list-style: none; padding-left: 0; }
+    .academy-list li { color: var(--text-grey); font-size: 0.85rem; margin-bottom: 6px; display: flex; align-items: start; gap: 8px; line-height: 1.4; }
+    .academy-list li::before { content: '•'; color: var(--primary); font-weight: bold; margin-right: 5px; }
+
     /* STEPS */
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
     .step-card { position: relative; padding: 20px; border-left: 1px solid rgba(255,255,255,0.1); }
@@ -267,21 +282,6 @@
       top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; filter: blur(40px); opacity: 0.6;
     }
     .blob-glow.purple { background: radial-gradient(circle, rgba(157, 78, 255, 0.25) 0%, transparent 70%); }
-
-    /* ACADEMY CARDS */
-    .academy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
-    .academy-card {
-        background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-        border: 1px solid var(--glass-border); border-radius: 24px; padding: 24px;
-        position: relative; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column;
-    }
-    .academy-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: 0 10px 40px rgba(157, 78, 255, 0.15); }
-    .academy-icon { font-size: 2.2rem; margin-bottom: 15px; }
-    .academy-tag { position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); color: white; font-size: 0.65rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.1); }
-    
-    .academy-list { margin-top: 15px; list-style: none; padding-left: 0; }
-    .academy-list li { color: var(--text-grey); font-size: 0.85rem; margin-bottom: 6px; display: flex; align-items: start; gap: 8px; line-height: 1.4; }
-    .academy-list li::before { content: '•'; color: var(--primary); font-weight: bold; }
 
     /* --- SECTION VERSUS (Pain vs Gain) --- */
     .versus-container {
@@ -352,8 +352,8 @@
       .cta-group { justify-content: center; }
       
       .steps-grid { grid-template-columns: 1fr; }
+      .academy-grid { grid-template-columns: 1fr; }
       .step-card { border-left: none; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px;}
-      .academy-grid { grid-template-columns: 1fr; } 
       .split-section { display: flex; flex-direction: column; gap: 50px; }
       .bento-grid { grid-template-columns: 1fr; }
       .versus-container { grid-template-columns: 1fr; }
@@ -481,12 +481,11 @@
           <span class="tag">GÉNÉRATION IA</span>
           <h2>Créez votre business plan avec l'IA</h2>
           <p style="margin-top: 20px;">
-          Laissez-vous guider étape par étape par notre POWER IA pour structurer votre projet et 
-obtenir un plan d'action prêt à l'emploi.  
+            Transformez une idée en plan clair et structuré. POWER IA vous guide pas à pas pour construire un business plan réaliste, même sans connaissances techniques.
           </p>
           <ul class="check-list" style="margin-top: 20px;">
-            <li><span class="icon-check">✓</span> Zéro expertise requise, 100% d'efficacité.</li>
-            <li><span class="icon-check">✓</span> Business plan sur mesure.</li>
+            <li><span class="icon-check">✓</span> Guidage étape par étape, même en partant de zéro</li>
+            <li><span class="icon-check">✓</span> Plan d'action clair et structuré généré par l'IA</li>
           </ul>
         </div>
         <div class="asset-container">
@@ -530,10 +529,60 @@ obtenir un plan d'action prêt à l'emploi.
         <div style="text-align: center; max-width: 800px; margin: 0 auto;">
           <h2 style="margin-top: 15px;">POWER Academy™</h2>
           <p style="margin-top: 10px; font-size: 1rem;">
-            Une sélection de stratégies testées et de ressources exclusives pour structurer votre projet.
+            Un condensé de stratégies éprouvées et de ressources exclusives pour entreprendre sans limite.
           </p>
         </div>
 
+        <div class="academy-grid">
+            <div class="academy-card">
+                <div class="academy-tag">CRÉATION</div>
+                <div class="academy-icon">🚀</div>
+                <h3>Lancement & Branding</h3>
+                <ul class="academy-list">
+                    <li>Guide création boutique Shopify</li>
+                    <li>Lancer son Business Physique</li>
+                    <li>Guide Création de Marque</li>
+                    <li>Niches : Sport, Cuisine, Gaming, Auto, Animaux...</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">VISIBILITÉ</div>
+                <div class="academy-icon">📱</div>
+                <h3>Marketing & Réseaux</h3>
+                <ul class="academy-list">
+                    <li>4 Ebooks : X, YouTube, TikTok, Twitch</li>
+                    <li>Ebook Créateur Snap</li>
+                    <li>Liste d'Agents d'Influenceurs</li>
+                    <li>Stratégies de contenu viral</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">OFFSHORE</div>
+                <div class="academy-icon">🌍</div>
+                <h3>International & Finances</h3>
+                <ul class="academy-list">
+                    <li>Guide Expatriation (40 pays)</li>
+                    <li>Ebook "200 pays où s'expatrier"</li>
+                    <li>Ebook Gestion Bancaire</li>
+                    <li>Pack Logistique & Transitaire</li>
+                </ul>
+            </div>
+            <div class="academy-card">
+                <div class="academy-tag">PRODUCTIVITÉ</div>
+                <div class="academy-icon">🤖</div>
+                <h3>IA & Négociation</h3>
+                <ul class="academy-list">
+                    <li>Bibliothèque de Prompts IA</li>
+                    <li>L'Art de la Négociation</li>
+                    <li>Agent Exclusif & Partenariats</li>
+                    <li>Automatisation business</li>
+                </ul>
+            </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-bottom: 100px;">
+        <h2 style="text-align: center; margin-bottom: 30px;">Votre succès en 3 étapes</h2>
         <div class="steps-grid">
           <div class="step-card">
             <div class="step-number">01</div>
