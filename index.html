@@ -7,8 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     /* --- 1. CORE VARIABLES & THEME --- */
     :root {
@@ -24,6 +23,8 @@
       --text-grey: #9ca3af;
 
       --font-main: 'Manrope', sans-serif;
+      /* NOUVELLE POLICE POUR LE PRIX : SPACE GROTESK */
+   --font-price: 'Inter', sans-serif;
 
       /* GLASS RECIPE */
       --glass-bg: rgba(20, 20, 25, 0.6);
@@ -70,6 +71,12 @@
 
     .highlight-text {
       background: linear-gradient(135deg, #fff 0%, #8ba1ff 50%, #fff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: gradientMove 4s linear infinite;
+    }
+        .highlight-texts {
+      background: linear-gradient(135deg, #fff 0%, #4564FF 50%, #fff 100%);
       background-size: 200% auto;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       animation: gradientMove 4s linear infinite;
@@ -191,7 +198,21 @@
       font-size: 0.75rem; font-weight: 800; padding: 6px 12px; border-bottom-left-radius: 16px; text-transform: uppercase;
     }
 
-    .price-display { font-size: 3.5rem; font-weight: 800; line-height: 1; margin: 10px 0; letter-spacing: -2px; }
+    /* MODIFICATION : Application de Space Grotesk au prix */
+ /* MODIFICATION : Prix plus propre et lisible */
+.price-display { 
+  font-family: var(--font-price);
+  font-size: 3.8rem; 
+  font-weight: 700; /* 700 est bien gras pour Inter */
+  line-height: 1; 
+  margin: 10px 0; 
+  letter-spacing: -0.03em; /* Inter est un peu large, on resserre légèrement */
+  
+  /* CRUCIAL : Active les "chiffres tabulaires" pour que le prix soit bien stable */
+  font-variant-numeric: tabular-nums; 
+  font-feature-settings: "tnum";
+}
+
     .check-list li {
       display: flex; align-items: start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; color: #e4e4e7;
       opacity: 0; animation: fadeUpList 0.5s forwards;
@@ -209,7 +230,7 @@
 
     /* --- 6. SECTIONS ADD-ONS --- */
     
-    /* ACADEMY CARDS (Added back) */
+    /* ACADEMY CARDS */
     .academy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
     .academy-card {
         background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
@@ -393,7 +414,7 @@
 
   <div class="mobile-sticky-cta">
     <div style="display:flex; flex-direction:column; line-height:1.1;">
-      <span style="font-weight: 800; font-size: 1rem; color:white;">29,99€</span>
+      <span style="font-family: var(--font-price); font-weight: 700; font-size: 1.2rem; color:white;">29,99€</span>
       <span style="font-size: 0.7rem; color: #4ade80;">Offre limitée</span>
     </div>
     <a href="#buy" class="nav-btn" style="padding: 8px 20px; font-size: 0.85rem;">Accéder à POWER</a>
@@ -404,7 +425,7 @@
       <div class="hero-grid">
         <div class="hero-content reveal">
 
-          <h1 class="hero-title">La solution pour <span class="highlight-text">se lancer</span> et développer son business.</h1>
+          <h1 class="hero-title"><span class="highlight-texts">POWER -    </span>  La solution pour <span class="highlight-text">se lancer</span> et développer son business.</h1>
           <p>
           POWER s’adresse à celles et ceux qui veulent entreprendre. 
 Accédez à un écosystème 100% business qui regroupe des dizaines d’e-books spécialisés et 
@@ -418,10 +439,12 @@ un agent IA dédié, pour vous accompagner dans votre projet.
           <div class="popular-badge">Meilleure offre</div>
           <h3 style="margin-bottom: 5px;">Power - Accès Complet</h3>
           <span class="price-sub">La solution pour se lancer et développer son business.</span>
+          
           <div class="price-display">29,99€</div>
+          
           <span class="price-sub" style="color: #4ade80; margin-bottom: 24px;">Paiement en une fois. Pas d'abonnement.</span>
           <ul class="check-list">
-            <li><span class="icon-check">✓</span> <strong>+50 e-books business</strong> (créer sa marque, Intelligence artificielle)</li>
+            <li><span class="icon-check">✓</span> +50 e-books business (créer sa marque, Intelligence artificielle)</li>
             <li><span class="icon-check">✓</span> Agent IA dédié pour identifier vos fournisseurs parmi plus d’un million de contacts répertoriés. </li>
             <li><span class="icon-check">✓</span> Guides marketing complet pour créer sa marque</li>
             <li><span class="icon-check">✓</span> Solution Shopify clé en main</li>
